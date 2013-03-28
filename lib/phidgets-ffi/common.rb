@@ -384,7 +384,7 @@ module Phidgets
     def on_detach(obj=nil, &block)
       @on_detach_obj = obj
       @on_detach = Proc.new { |handle, obj_ptr|
-        yield self, nil, #object_for(obj_ptr)
+        yield self, nil #object_for(obj_ptr)
       }
       Phidgets::FFI::Common.set_OnDetach_Handler(@handle, @on_detach, pointer_for(obj))
 	  true
