@@ -365,7 +365,7 @@ module Phidgets
 	  @on_attach_obj = obj
       @on_attach = Proc.new { |handle, obj_ptr|
 		load_device_attributes
-        yield self, object_for(obj_ptr)
+        yield self, nil #object_for(obj_ptr)
     	 }
       Phidgets::FFI::Common.set_OnAttach_Handler(@handle, @on_attach, pointer_for(obj))
 	  true
@@ -384,7 +384,7 @@ module Phidgets
     def on_detach(obj=nil, &block)
       @on_detach_obj = obj
       @on_detach = Proc.new { |handle, obj_ptr|
-        yield self, object_for(obj_ptr)
+        yield self, nil, #object_for(obj_ptr)
       }
       Phidgets::FFI::Common.set_OnDetach_Handler(@handle, @on_detach, pointer_for(obj))
 	  true
@@ -403,7 +403,8 @@ module Phidgets
     def on_error(obj=nil, &block)
       @on_error_obj = obj
       @on_error = Proc.new { |handle, obj_ptr, code, description|
-        yield self, object_for(obj_ptr), code, description
+        #yield self, object_for(obj_ptr), code, description
+        yield self, nil, code, description
       }
       Phidgets::FFI::Common.set_OnError_Handler(@handle, @on_error, pointer_for(obj))
 	  true
@@ -422,7 +423,7 @@ module Phidgets
     def on_server_connect(obj=nil, &block)
       @on_server_connect_obj = obj
       @on_server_connect = Proc.new { |handle, obj_ptr|
-        yield self, object_for(obj_ptr)
+        yield self, nil #object_for(obj_ptr)
       }
       Phidgets::FFI::Common.set_OnServerConnect_Handler(@handle, @on_server_connect, pointer_for(obj))
 	  true
@@ -441,7 +442,7 @@ module Phidgets
     def on_server_disconnect(obj=nil, &block)
       @on_server_disconnect_obj = obj
       @on_server_disconnect = Proc.new { |handle, obj_ptr|
-        yield self, object_for(obj_ptr)
+        yield self, nil #object_for(obj_ptr)
       }
       Phidgets::FFI::Common.set_OnServerDisconnect_Handler(@handle, @on_server_disconnect, pointer_for(obj))
 	  true
@@ -461,7 +462,7 @@ module Phidgets
 	def on_sleep(obj=nil, &block)
       @on_sleep_obj = obj
       @on_sleep = Proc.new { |obj_ptr|
-        yield object_for(obj_ptr)
+        yield nil #object_for(obj_ptr)
       }
       Phidgets::FFI::Common.set_OnWillSleep_Handler(@on_sleep, pointer_for(obj))
 	  true
@@ -482,7 +483,7 @@ module Phidgets
     def on_wake(obj=nil, &block)
       @on_wake_obj = obj
       @on_wake = Proc.new { |obj_ptr|
-        yield object_for(obj_ptr)
+        yield nil #object_for(obj_ptr)
       }
       Phidgets::FFI::Common.set_OnWakeup_Handler(@on_wake, pointer_for(obj))
       true

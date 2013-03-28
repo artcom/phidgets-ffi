@@ -137,7 +137,7 @@ module Phidgets
     def on_attach(obj=nil, &block)
       @on_attach_obj = obj
       @on_attach = Proc.new { |handle, obj_ptr|
-	    yield handle, object_for(obj_ptr)
+	    yield handle, nil #object_for(obj_ptr)
       }
       Klass.set_OnAttach_Handler(@handle, @on_attach, pointer_for(obj))
     end
@@ -155,7 +155,7 @@ module Phidgets
     def on_detach(obj=nil, &block)
       @on_detach_obj = obj
       @on_detach = Proc.new { |handle, obj_ptr|
-        yield handle, object_for(obj_ptr)
+        yield handle, nil #object_for(obj_ptr)
       }
       Klass.set_OnDetach_Handler(@handle, @on_detach, pointer_for(obj))
     end
@@ -173,7 +173,7 @@ module Phidgets
     def on_server_connect(obj=nil, &block)
       @on_server_connect_obj = obj
       @on_server_connect = Proc.new { |handle, obj_ptr|
-        yield self, object_for(obj_pointer)
+        yield self, nil #object_for(obj_pointer)
       }
       Klass.set_OnServerConnect_Handler(@handle, @on_server_connect, pointer_for(obj))
     end
@@ -191,7 +191,7 @@ module Phidgets
     def on_server_disconnect(obj=nil, &block)
       @on_server_disconnect_obj = obj
       @on_server_disconnect = Proc.new { |handle, obj_ptr|
-        yield self, object_for(obj_ptr)
+        yield self, nil #object_for(obj_ptr)
       }
       Klass.set_OnServerDisconnect_Handler(@handle, @on_server_disconnect, pointer_for(obj))
     end
@@ -209,7 +209,8 @@ module Phidgets
     def on_error(obj=nil, &block)
       @on_error_obj = obj
       @on_error = Proc.new { |handle, obj_ptr, code, description|
-        yield self, object_for(obj_ptr), code, description
+        #yield self, object_for(obj_ptr), code, description
+        yield self, nil, code, description
       }
       Klass.set_OnError_Handler(@handle, @on_error, pointer_for(obj))
     end
