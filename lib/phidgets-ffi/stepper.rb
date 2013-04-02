@@ -37,7 +37,7 @@ module Phidgets
     def on_input_change(obj=nil, &block)
       @on_input_change_obj = obj
       @on_input_change = Proc.new { |device, obj_ptr, index, state|
-        yield self, @inputs[index], (state == 0 ? false : true), object_for(obj_ptr)
+        yield self, @inputs[index], (state == 0 ? false : true), nil #object_for(obj_ptr)
       }
       Klass.set_OnInputChange_Handler(@handle, @on_input_change, pointer_for(obj))
     end
@@ -55,7 +55,7 @@ module Phidgets
     def on_velocity_change(obj=nil, &block)
       @on_velocity_change_obj = obj
       @on_velocity_change = Proc.new { |device, obj_ptr, index, velocity|
-        yield self, @steppers[index], velocity, object_for(obj_ptr)
+        yield self, @steppers[index], velocity, nil #object_for(obj_ptr)
       }
       Klass.set_OnVelocityChange_Handler(@handle, @on_velocity_change, pointer_for(obj))
     end
@@ -73,7 +73,7 @@ module Phidgets
     def on_position_change(obj=nil, &block)
       @on_position_change_obj = obj
       @on_position_change = Proc.new { |device, obj_ptr, index, position|
-        yield self, @steppers[index], position, object_for(obj_ptr)
+        yield self, @steppers[index], position, nil #object_for(obj_ptr)
       }
       Klass.set_OnPositionChange_Handler(@handle, @on_position_change, pointer_for(obj))
     end
@@ -91,7 +91,7 @@ module Phidgets
     def on_current_change(obj=nil, &block)
       @on_current_change_obj = obj
       @on_current_change = Proc.new { |device, obj_ptr, index, current|
-        yield self, @steppers[index], current, object_for(obj_ptr)
+        yield self, @steppers[index], current, nil #object_for(obj_ptr)
       }
       Klass.set_OnCurrentChange_Handler(@handle, @on_current_change, pointer_for(obj))
     end
