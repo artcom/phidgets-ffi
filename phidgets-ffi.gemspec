@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Kelley Reynolds, Mike Phi"]
   s.email       = ["support@phidgets.com"]
-  s.homepage    = "https://github.com/kreynolds/phidgets-ffi"
-  s.summary     = "FFI Bindings for the Phidget Library"
-  s.description = "FFI Bindings for the Phidget Library"
+  s.homepage    = "https://github.com/artcom/phidgets-ffi"
+  s.summary     = "FFI Bindings for the Phidget Library, Art+Com AG Fork"
+  s.description = "FFI Bindings for the Phidget Library, Art+Com AG Fork"
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "phidgets-ffi"
